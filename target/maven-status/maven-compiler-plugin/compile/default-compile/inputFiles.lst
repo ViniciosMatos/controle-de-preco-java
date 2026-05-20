@@ -1,0 +1,15 @@
+C:\Users\pichau\OneDrive\Desktop\arquiteruraSoftware\arquitetura-software-quarta\src\domain\CrawlerResult.java
+C:\Users\pichau\OneDrive\Desktop\arquiteruraSoftware\arquitetura-software-quarta\src\domain\EntityInterface.java
+C:\Users\pichau\OneDrive\Desktop\arquiteruraSoftware\arquitetura-software-quarta\src\domain\LinksConverter.java
+C:\Users\pichau\OneDrive\Desktop\arquiteruraSoftware\arquitetura-software-quarta\src\domain\port\CrawlerPort.java
+C:\Users\pichau\OneDrive\Desktop\arquiteruraSoftware\arquitetura-software-quarta\src\domain\Preco.java
+C:\Users\pichau\OneDrive\Desktop\arquiteruraSoftware\arquitetura-software-quarta\src\domain\Produto.java
+C:\Users\pichau\OneDrive\Desktop\arquiteruraSoftware\arquitetura-software-quarta\src\infra\adapter\MercadoLivreCrawlerAdapter.java
+C:\Users\pichau\OneDrive\Desktop\arquiteruraSoftware\arquitetura-software-quarta\src\infra\adapter\NewBalanceCrawlerAdapter.java
+C:\Users\pichau\OneDrive\Desktop\arquiteruraSoftware\arquitetura-software-quarta\src\infra\HibernateUtil.java
+C:\Users\pichau\OneDrive\Desktop\arquiteruraSoftware\arquitetura-software-quarta\src\IO.java
+C:\Users\pichau\OneDrive\Desktop\arquiteruraSoftware\arquitetura-software-quarta\src\Main.java
+C:\Users\pichau\OneDrive\Desktop\arquiteruraSoftware\arquitetura-software-quarta\src\service\CrawlerService.java
+C:\Users\pichau\OneDrive\Desktop\arquiteruraSoftware\arquitetura-software-quarta\src\service\PrecoService.java
+C:\Users\pichau\OneDrive\Desktop\arquiteruraSoftware\arquitetura-software-quarta\src\service\ProdutoService.java
+C:\Users\pichau\OneDrive\Desktop\arquiteruraSoftware\arquitetura-software-quarta\src\service\ServiceInterface.java

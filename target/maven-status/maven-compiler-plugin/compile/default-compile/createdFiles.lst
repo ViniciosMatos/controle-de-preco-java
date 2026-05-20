@@ -1,0 +1,13 @@
+domain\EntityInterface.class
+domain\LinksConverter$1.class
+service\ServiceInterface.class
+domain\CrawlerResult.class
+service\ProdutoService.class
+infra\adapter\MercadoLivreCrawlerAdapter.class
+Main.class
+infra\HibernateUtil.class
+IO.class
+domain\Preco.class
+domain\LinksConverter.class
+domain\Produto.class
+infra\adapter\NewBalanceCrawlerAdapter.class
