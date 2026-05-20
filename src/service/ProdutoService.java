@@ -2,6 +2,7 @@ package service;
 
 import domain.EntityInterface;
 import domain.Produto;
+import domain.Preco;
 import infra.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -54,6 +55,15 @@ public class ProdutoService implements ServiceInterface {
             for (java.util.Map<String, String> link : p.getLinks()) {
                 System.out.printf("  - Loja: %s | URL: %s\n", link.get("loja"), link.get("url"));
             }
+            System.out.println("Histórico de Preços:");
+            if (p.getHistoricoDePrecos() == null || p.getHistoricoDePrecos().isEmpty()) {
+                System.out.println("  - Nenhum histórico registrado");
+            } else {
+                for (Preco preco : p.getHistoricoDePrecos()) {
+                    System.out.printf("  - Data: %s | Preço: %.2f | Loja: %s\n",
+                            preco.getDataAtual(), preco.getPreco(), preco.getNomeLoja());
+                }
+            }
             System.out.println("---------------------------------\n");
         }
     }
@@ -79,6 +89,14 @@ public class ProdutoService implements ServiceInterface {
                 managed.setPreco(atualizado.getPreco());
                 managed.setNomeLoja(atualizado.getNomeLoja());
                 managed.setUrlProduto(atualizado.getUrlProduto());
+
+                // Sincroniza o histórico de preços (adiciona os novos itens à lista managed)
+                for (Preco p : atualizado.getHistoricoDePrecos()) {
+                    if (p.getId() == null) {
+                        p.setProduto(managed);
+                        managed.getHistoricoDePrecos().add(p);
+                    }
+                }
             }
             tx.commit();
         }

@@ -93,11 +93,11 @@ public class CrawlerService {
                 produto.setNomeLoja(menorPreco.getNomeLoja());
                 produto.setUrlProduto(menorPreco.getUrlProduto());
                 
-                produtoService.edit(produto, produto.getId());
-
                 // Salva o preço atualizado (com nome de loja e url do produto vencedores) no histórico de preços!
                 Preco historico = new Preco(new Date(), menorPreco.getPreco(), produto, menorPreco.getNomeLoja(), menorPreco.getUrlProduto());
-                precoService.add(historico);
+                produto.adicionarPreco(historico);
+                
+                produtoService.edit(produto, produto.getId());
             } else {
                 System.out.println("Preco mantido: " + menorPreco.getPreco() + " (" + menorPreco.getNomeLoja() + ") - Já é o preço atual no banco.");
             }

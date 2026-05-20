@@ -98,4 +98,15 @@ public class Preco implements EntityInterface {
     public void setUrlProduto(String urlProduto) {
         this.urlProduto = urlProduto;
     }
+
+    @Override
+    public String toString() {
+        return "Preco{" +
+                "id=" + id +
+                ", dataAtual=" + dataAtual +
+                ", preco=" + preco +
+                ", nomeLoja='" + nomeLoja + '\'' +
+                ", urlProduto='" + urlProduto + '\'' +
+                '}';
+    }
 }

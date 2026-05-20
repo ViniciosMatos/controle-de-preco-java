@@ -39,7 +39,7 @@ void main() {
                     editarPreco(produtoService, precoService);
                     break;
                 case 6:
-                    listarPrecos(precoService);
+                    listarPrecos(produtoService);
                     break;
                 case 7:
                     executarCrawler(produtoService, precoService);
@@ -80,11 +80,12 @@ public void adicionarProduto(ProdutoService produtoService, PrecoService precoSe
 
     Produto produto = new Produto(sku, nome, marca, descricao, preco);
     adicionarLinks(produto);
-    produtoService.add(produto);
 
     Date dataAtual = new Date();
     Preco novoPreco = new Preco(dataAtual, preco, produto, produto.getNomeLoja(), produto.getUrlProduto());
-    precoService.add(novoPreco);
+    produto.adicionarPreco(novoPreco);
+
+    produtoService.add(produto);
 }
 
 public void listarProdutos(ProdutoService service) {
@@ -109,11 +110,11 @@ public void editarProdutos(ProdutoService produtoService, PrecoService precoServ
         adicionarLinks(produto);
     }
 
-    produtoService.edit(produto, produto.getId());
-
     Date dataAtual = new Date();
     Preco novoPreco = new Preco(dataAtual, produto.getPreco(), produto, produto.getNomeLoja(), produto.getUrlProduto());
-    precoService.add(novoPreco);
+    produto.adicionarPreco(novoPreco);
+
+    produtoService.edit(produto, produto.getId());
 }
 
 public void deletarProdutos(ProdutoService service) {
@@ -130,15 +131,33 @@ public void editarPreco(ProdutoService produtoService, PrecoService precoService
 
     Produto produto = (Produto) produtoService.findByIndex(indice);
     produto.setPreco(Float.parseFloat(IO.readln("Digite o novo preço: ")));
-    produtoService.edit(produto, produto.getId());
 
     Date dataAtual = new Date();
     Preco novoPreco = new Preco(dataAtual, produto.getPreco(), produto, produto.getNomeLoja(), produto.getUrlProduto());
-    precoService.add(novoPreco);
+    produto.adicionarPreco(novoPreco);
+
+    produtoService.edit(produto, produto.getId());
 }
 
-public void listarPrecos(PrecoService precoService){
-    precoService.list();
+public void listarPrecos(ProdutoService produtoService) {
+    List<Produto> produtos = produtoService.listar();
+    if (produtos.isEmpty()) {
+        System.out.println("Nenhum produto cadastrado no banco de dados.");
+        return;
+    }
+    for (Produto p : produtos) {
+        System.out.println("Produto: " + p.getNome() + " (SKU: " + p.getSku() + ")");
+        System.out.println("Histórico de Preços:");
+        if (p.getHistoricoDePrecos() == null || p.getHistoricoDePrecos().isEmpty()) {
+            System.out.println("  - Nenhum histórico registrado");
+        } else {
+            for (Preco preco : p.getHistoricoDePrecos()) {
+                System.out.printf("  - Data: %s | Preço: %.2f | Loja: %s | Link: %s\n",
+                        preco.getDataAtual(), preco.getPreco(), preco.getNomeLoja(), preco.getUrlProduto());
+            }
+        }
+        System.out.println("-----------------------------------");
+    }
 }
 
 public void executarCrawler(ProdutoService produtoService, PrecoService precoService) {

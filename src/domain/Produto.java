@@ -54,8 +54,13 @@ public class Produto implements EntityInterface {
             mappedBy = "produto",
             cascade = CascadeType.ALL,
             orphanRemoval = true,
-            fetch = FetchType.LAZY)
+            fetch = FetchType.EAGER)
     private List<Preco> historicoDePrecos = new ArrayList<>();
+
+    public void adicionarPreco(Preco preco) {
+        preco.setProduto(this);
+        this.historicoDePrecos.add(preco);
+    }
 
     public Produto() {
     }
@@ -160,6 +165,7 @@ public class Produto implements EntityInterface {
                 ", nomeLoja='" + nomeLoja + '\'' +
                 ", urlProduto='" + urlProduto + '\'' +
                 ", links=" + links +
+                ", historicoDePrecos=" + historicoDePrecos +
                 '}';
     }
 }
